@@ -1,0 +1,28 @@
+/* header.component.css */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navigation a {
+    color: #fff;
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,9 @@
+<!-- Make sure to use the correct selector for the LoginComponent -->
+<div class="login">
+  <h2>Login</h2>
+  <form (submit)="login()">
+    <input type="text" placeholder="Username" [(ngModel)]="username" required>
+    <input type="password" placeholder="Password" [(ngModel)]="password" required>
+    <button type="submit">Login</button>
+  </form>
+</div>

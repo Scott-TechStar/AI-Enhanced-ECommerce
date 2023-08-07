@@ -1,0 +1,23 @@
+<div class="checkout">
+    <h2>Checkout</h2>
+    <div *ngIf="getCartItems().length > 0; else emptyCart">
+      <ul class="checkout-items">
+        <li *ngFor="let item of getCartItems()" class="checkout-item">
+          <div class="item-details">
+            <img [src]="item.imageUrl" alt="{{ item.name }}" class="checkout-item-image">
+            <h4 class="checkout-item-name">{{ item.name }}</h4>
+            <p class="checkout-item-price">{{ item.price | currency }}</p>
+          </div>
+        </li>
+      </ul>
+      <div class="checkout-total">
+        <p>Total:</p>
+        <p class="checkout-total-price">{{ getTotalPrice() | currency }}</p>
+      </div>
+      <button class="place-order-button" (click)="placeOrder()">Place Order</button>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty. Please add items to your cart before proceeding to checkout.</p>
+    </ng-template>
+  </div>
+  
