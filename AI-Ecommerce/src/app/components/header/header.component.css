@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
+  flex-wrap: wrap;
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
@@ -17,7 +17,7 @@
 }
 
 .logo {
-  flex: 1; /* Expands to fill available space */
+  flex: 1;
   margin-left: 20px;
 
   /* Responsive adjustments */
@@ -26,8 +26,15 @@
   }
 }
 
+/* Adjust logo size and make it rounded */
+.logo img {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the logo rounded */
+}
+
 .navigation {
-  flex: 2; /* Expands to fill available space */
+  flex: 2;
   text-align: right;
   margin-right: 20px;
 
@@ -37,4 +44,24 @@
     margin: 10px;
     text-align: center;
   }
+}
+
+/* Adjust navigation list styles without using :is() */
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+/* Adjust list item styles */
+.navigation li {
+  margin: 0;
+}
+
+/* Adjust anchor (link) styles */
+.navigation a {
+  color: #fff;
+  text-decoration: none;
 }
