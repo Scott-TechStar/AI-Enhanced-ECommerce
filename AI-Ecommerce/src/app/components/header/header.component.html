@@ -6,10 +6,25 @@
     <nav class="navigation">
       <ul>
         <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/products">Products</a></li>
+        <li class="nav-item dropdown">
+          <a routerLink="/products" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+            (click)="isSubcategoriesOpen = !isSubcategoriesOpen">
+            Products
+          </a>
+          <ul class="sub-menu" class="dropdown-menu" *ngIf="isSubcategoriesOpen">
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li>
+            <li><a href="#">Category 3</a></li>
+          </ul>
+        </li>
         <li><a routerLink="/cart">Cart</a></li>
         <!-- Add more navigation links as needed -->
       </ul>
     </nav>
+    <div class="search-bar">
+      <input type="text" class="form-control" placeholder="Search Products" [(ngModel)]="searchQuery">
+      <button class="btn btn-primary" (click)="searchProducts()">Search</button>
+    </div>
   </header>
   

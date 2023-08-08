@@ -14,7 +14,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './AuthGuard/auth.guard';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component'; // Import the AuthGuard
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component'; // Import the AuthGuard
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { HeaderComponent } from './components/header/header.component'; // Impor
     RegisterComponent,
     DashboardComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService, CartService, AuthGuard],
   bootstrap: [AppComponent]

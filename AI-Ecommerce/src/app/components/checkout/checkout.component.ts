@@ -1,5 +1,8 @@
+// checkout.component.ts
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-checkout',
@@ -7,23 +10,29 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  constructor(private cartService: CartService) { }
+  cartItems: Product[] = [];
+  checkoutForm: FormGroup;
 
-  ngOnInit() {
+  constructor(private cartService: CartService, private fb: FormBuilder) {
+    this.checkoutForm = this.fb.group({
+      fullName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      paymentMethod: ['', Validators.required]
+    });
   }
 
-  getCartItems() {
-    return this.cartService.getCartItems();
+  ngOnInit(): void {
+    this.cartService.getCartItems().subscribe((items) => {
+      this.cartItems = items;
+    });
   }
 
-  getTotalPrice() {
-    return this.cartService.getTotalPrice();
-  }
-
-  placeOrder() {
-    // Perform order placement logic here
-    // Example: Send cart items to the server for order processing
-    // Reset the cart after successful order placement
-    this.cartService.clearCart();
+  onSubmit(): void {
+    if (this.checkoutForm.valid) {
+      // Process checkout and clear cart, add your logic here
+      console.log('Checkout form submitted:', this.checkoutForm.value);
+      this.cartService.clearCart();
+    }
   }
 }

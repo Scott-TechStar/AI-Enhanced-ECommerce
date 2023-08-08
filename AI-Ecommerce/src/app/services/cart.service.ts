@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable,BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -6,19 +7,24 @@ import { Product } from '../models/product.model';
 })
 export class CartService {
   private cartItems: Product[] = [];
+  private cartItemsSubject = new BehaviorSubject<Product[]>(this.cartItems);
 
   constructor() { }
-
-  addToCart(item: Product): void {
-    this.cartItems.push(item);
+  addToCart(product: Product): void {
+    this.cartItems.push(product);
+    this.cartItemsSubject.next(this.cartItems);
   }
 
-  removeFromCart(productId: number): void {
-    this.cartItems = this.cartItems.filter(item => item.id !== productId);
+  removeFromCart(product: Product): void {
+    const index = this.cartItems.indexOf(product);
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+      this.cartItemsSubject.next(this.cartItems);
+    }
   }
 
-  getCartItems(): Product[] {
-    return this.cartItems;
+  getCartItems(): Observable<Product[]> {
+    return this.cartItemsSubject.asObservable();
   }
 
   getTotalPrice(): number {

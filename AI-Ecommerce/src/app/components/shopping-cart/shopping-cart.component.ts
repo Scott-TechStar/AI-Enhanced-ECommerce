@@ -12,17 +12,14 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
 
-  ngOnInit() {
-    this.loadCartItems();
+  ngOnInit(): void {
+    this.cartService.getCartItems().subscribe((items) => {
+      this.cartItems = items;
+    });
   }
 
-  loadCartItems() {
-    this.cartItems = this.cartService.getCartItems();
-  }
-
-  removeFromCart(productId: number) {
-    this.cartService.removeFromCart(productId);
-    this.loadCartItems();
+  removeFromCart(product: Product): void {
+    this.cartService.removeFromCart(product);
   }
 
   getTotalPrice() {

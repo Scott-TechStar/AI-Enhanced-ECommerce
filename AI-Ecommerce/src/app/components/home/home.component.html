@@ -1,0 +1,26 @@
+<!-- home.component.html -->
+<div class="home-container">
+    <h1>Welcome to Our E-Commerce Store!</h1>
+  
+    <!-- Showcase featured products and offers here -->
+    <div class="featured-products">
+      <h2>Featured Products</h2>
+      <div class="product-card" *ngFor="let product of featuredProducts">
+        <img [src]="product.image" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <span class="price">{{ product.price | currency }}</span>
+      </div>
+    </div>
+  
+    <!-- Log-in prompt modal -->
+    <div class="modal-overlay" *ngIf="showLoginPrompt">
+      <div class="modal">
+        <h3>Unlock Exclusive Benefits</h3>
+        <p>Log in to enjoy personalized recommendations and offers!</p>
+        <button class="btn-primary" (click)="showLoginPrompt = false">Not Now</button>
+        <a [routerLink]="['/login']">Log In</a>
+      </div>
+    </div>
+  </div>
+  
