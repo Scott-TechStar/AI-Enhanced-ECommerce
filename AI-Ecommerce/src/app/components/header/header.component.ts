@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -6,11 +6,12 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+  }
   searchQuery: string = ''; // Initialize with an empty string
   constructor(private productService: ProductService) {}
 
-  isSubcategoriesOpen: boolean = false;
 
   searchProducts() {
     if (this.searchQuery.trim() !== '') {
